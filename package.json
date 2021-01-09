@@ -1,0 +1,8 @@
+{
+  "name": "simple-redux",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/alexglen/simple-redux.git",
+  "author": "Alex Glen <alexfly033@gmail.com>",
+  "license": "MIT"
+}

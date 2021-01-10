@@ -150,23 +150,23 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.createStore = void 0;
 
-var createStore = function createStore(fn, initialState) {
-  var currentReducer = fn;
-  var currentState = initialState;
-
-  var listener = function listener() {};
-
+var createStore = function createStore(reducer, initialState) {
+  var state = reducer(initialState, {
+    type: 'INIT'
+  });
+  var subscribers = [];
   return {
     getState: function getState() {
-      return currentState;
-    },
-    dispatch: function dispatch(action) {
-      currentState = currentReducer(currentState, action);
-      listener();
-      return action;
+      return state;
     },
     subscribe: function subscribe(cb) {
-      listener = cb;
+      subscribers.push(cb);
+    },
+    dispatch: function dispatch(action) {
+      state = reducer(state, action);
+      subscribers.forEach(function (fn) {
+        return fn();
+      });
     }
   };
 };
@@ -235,7 +235,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62665" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56355" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -2,6 +2,7 @@ import { reducer } from './reducer';
 import { createStore } from './createStore';
 
 const count = document.querySelector('p');
+
 const incButton = document.querySelector('.inc');
 const decButton = document.querySelector('.dec');
 const rndButton = document.querySelector('.rnd');
